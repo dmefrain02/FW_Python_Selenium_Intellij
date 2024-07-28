@@ -2,13 +2,18 @@
 import os
 
 class Inicializar():
-
+    
     URL_SeleniumGrid = "http://localhost:4444/wd/hub"
-    Navegadores_Sel_Grid = ["Chrome","Edge_Remote","Chrome_Remote"]
+    Navegadores_Sel_Grid = ["Edge_Remote","Chrome_Remote"]
     
     #Directorio Base - Obtiene la ruta del directorio src del proyecto
     BaseDir = os.path.abspath(os.path.join(__file__,"../.."))
-
+    
+    #Variable en el archivo inicializar
+    URL_SeleniumGrid = "http://localhost:4444/wd/hub"
+    Navegadores_Sel_Grid = ["Chrome","Edge_Remote","Chrome_Remote"]
+    
+    
     #Tiempo de espera utilizado dentro del Framework
     Tiempo_Espera = 1
     
@@ -34,7 +39,7 @@ class Inicializar():
     HourFormat = '%H%M%S'
     
     #Navegador a Utilizar
-    Navegador = 'Chrome'
+    Navegador = u'Chrome'
     
     #Ruta Excel para escribir resultados o leer datos
     Excel_Leer_Escribir = BaseDir + u'\Data\Pruebas1.xlsx'
