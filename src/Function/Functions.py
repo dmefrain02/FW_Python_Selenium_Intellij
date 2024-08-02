@@ -505,11 +505,11 @@ class Functions(Inicializar):
         
         if (Inicializar.TestCase_x_Context =="S"):
             path = f"{GeneralPath}\{fecha}\Pruebas\{TestCase}\{DriverTest}\{HoraActual}"
-        elif (GeneralPath != ""):
+        elif (GeneralPath == "N"):
             path =f"{GeneralPath}\{fecha}\{TestCase}\{DriverTest}\{HoraActual}"
         else:
             path = f'{Inicializar.BaseDir}\Capturas\{fecha}\{TestCase}\{DriverTest}\{HoraActual}'
-            print(f'No se logro establecer ruta para la guardar la captura de pantalla, se guardara en la carpeta raiz del framework de pruebas.\nEn: {path}')
+            print(f'No se encuentra establecida la ruta para guardar la captura de pantalla, se guardara en la carpeta raiz del framework de pruebas.\nEn: {path}')
         
         if not os.path.exists(path):
             os.makedirs(path)  
@@ -538,7 +538,8 @@ class Functions(Inicializar):
                     _dbName = Inicializar.DB_DATABASE_Dev, 
                     _user=Inicializar.DB_USER_Dev, 
                     _pass = Inicializar.DB_PASS_Dev
-                    conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server}; SERVER='+_Servidor + ';DATABASE='+ _dbName +';UID='+_user+';PWD='+_pass)
+                     #                     'DRIVER={ODBC Driver 17 for SQL Server}; SERVER='+ _Servidor + ';DATABASE='+ _dbName +';UID='+_user+';PWD='+_pass
+                    conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server}; SERVER='+ _Servidor + ';DATABASE='+ _dbName +';UID='+_user+';PWD='+_pass)
                     print(conn)
                 elif Env == 'QA':
                     _Servidor = Inicializar.DB_HOST_QA, 
