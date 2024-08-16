@@ -28,8 +28,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 
 from selenium.webdriver.remote import remote_connection
-from selenium.webdriver.common.print_page_options import PrintOptions as PrintOptions
-import base64
+
+#from selenium.webdriver.common.print_page_options import PrintOptions as PrintOptions
+#import base64
+#import aspose.pdf as ap
+#import urllib3
 
 from Function.Inicializar import Inicializar
 from selenium.common.exceptions import NoSuchElementException,NoAlertPresentException,NoSuchWindowException,TimeoutException
@@ -521,21 +524,21 @@ class Functions(Inicializar):
             
             return path
         else:
-            return "Error: Sin configurar el Path y el contexto para las capturas de pantalla."
-                
+            return Inicializar.Warning_Capturas
+            
     #Realizar captura de pantalla
     def capturar_pantalla(self):
         Path=Functions.crear_path(self)
         TestCase =self.__class__.__name__
         
-        if Path != "Error: Sin configurar el Path y el contexto para las capturas de pantalla.":
+        if Path != Inicializar.Warning_Capturas:
             img = f'{Path}\{TestCase}\
             ('+Functions.obtener_fecha_actual(self)+' - '+ Functions.obtener_hora_actual(self)+')'+'.png'
             
             print(f'Se realizo captura de pantalla de la prueba: {img}')
             return self.driver.get_screenshot_as_file(img)
         else:
-            print("Error: No se logro generar la captura de pantalla. No se encuentra configurada el Path y variable contexto.")
+            print("Warning: No se logro generar la captura de pantalla. No se encuentra configurada el Path y variable contexto.")
     
     #Realizar captura de pantalla en reporte Allure
     def captura_pantalla_allure(self,Descripcion):
@@ -919,7 +922,3 @@ class Functions(Inicializar):
         salida.release()
         cv2.destroyAllWindows()
         print('Se finaliza la grabación del video')
-        
-   # def print_page_pdf(self):
-    #    pdf = self.driver.print_page()
-     #   pdf.write(Path.get(f'{Inicializar.Path_Evidencias}/selenium.pdf'),OutputType.BYTES.convertFromBase64Png(pdf.getContent))
